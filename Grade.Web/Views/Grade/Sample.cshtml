@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Json Sample";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+    <!-- Sample.cshtml -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var datas = {};
+        });
+        function showGradeDataInTable(tableId) {
+            $.ajax({
+                type: "GET",
+                traditional: true,
+                async: false,
+                cache: false,
+                url: '/GradeJson/Index',
+                context: document.body,
+                //data: getReportColumnsParams,
+
+                success: function (result) {
+
+                    //$("#showGrade").one("click", function (i, item) {
+                    //    $.each(result, function (i, item)
+                    //    {
+                    //        $(tableId).append("<tr><td>" + item.Id +
+                    //            "</td><td>" + item.GradeName +
+                    //            "</td><td>" + item.Min +
+                    //            " - " + item.Max + "</td></tr>")
+                    //    }
+                    //                 );
+                    //});
+
+                    ////alert(result);
+                    var header = "<table id='" + tableId + "'><tr><th>Id</th><th>Grade Name</th><th>Point</th></tr>";
+                    //var bodys = {};
+
+                    $.each(result, function (i, item) {
+                        header = header + "<tr><td>" + item.Id +
+                            "</td><td>" + item.GradeName +
+                            "</td><td>" + item.Min +
+                            " - " + item.Max + "</td></tr>";
+                    });
+                    header = header + "</table>";
+                    $(tableId).replaceWith(header);
+                }
+                ,
+                error: function (xhr) {
+                    //debugger;
+                    console.log(xhr.responseText);
+                    alert("Error has occurred..");
+                }
+            });
+
+
+        }
+
+        //TODO:  get data and trigger showGradeDataInTable(tableId)
+
+    </script>
+}
+<h2>@ViewBag.Title</h2>
+<span id="gradeTable">gradeTable</span>
+<button id="showGrade" onclick="showGradeDataInTable('#gradeTable')">Show Grade</button>
+<form>
+    <table>
+        <tr><th>Grade Name</th><th colspan="2">Point(Min,Max)</th></tr>
+        <tr><td><input type="text" /></td><td><input type="number" /></td><td><input type="number" /></td><td><button id="submitBtn">Submit</button></td></tr>
+    </table>
+
+</form>
+
+@*onclick="showGradeDataInTable('#gradeTable')"*@

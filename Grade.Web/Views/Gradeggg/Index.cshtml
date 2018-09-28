@@ -1,0 +1,73 @@
+﻿@model List<Grade.Web.Models.GradeModel>
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="body">
+        <div class="form-inline">
+            <h1>กำหนดคะแนนในการประเมินเกรด</h1>
+
+            <table class="table">
+                
+                    <tr>
+                        @foreach (var line in Model)
+                    {
+                        @Html.Partial("_grade", line);
+                    }
+                    </tr>
+                    @*<tbody>
+                <tr>
+                    <th scope="row">A</th>
+                    <td>@Html.TextBox("A-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("A-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">B+</th>
+                    <td>@Html.TextBox("BB-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("BB-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">B</th>
+                    <td>@Html.TextBox("B-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("B-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">C+</th>
+                    <td>@Html.TextBox("CC-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("CC-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">C</th>
+                    <td>@Html.TextBox("C-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("C-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">D+</th>
+                    <td>@Html.TextBox("DD-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("DD-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">D</th>
+                    <td>@Html.TextBox("D-Min", null, new { @class = "form-control grade" })</td>
+                    <td>@Html.TextBox("D-Max", null, new { @class = "form-control grade" })</td>
+                </tr>
+                <tr>
+                    <th scope="row">รูปแบบ</th>
+                    <td>@Html.RadioButton("1", true, new { @class = "form-control grade" })<p>ระยะห่าง 1 คะแนน</p></td>
+                    <td>@Html.RadioButton("2", false, new { @class = "form-control grade" })<p>ระยะห่าง 0.1 คะแนน</p></td>
+                </tr>
+            </tbody>*@
+</table>
+        </div>
+</div>
+
+    <table class="table">
+            
+                <td><button type="button" class="btn btn-primary btn-lg">ล้างค่า</button></td>
+                <td><button type="submit" class="btn btn-primary btn-lg">คำนวณเกรด</button></td>
+     
+    </table>
+}
